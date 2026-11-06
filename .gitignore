@@ -1,0 +1,86 @@
+# ===== Gradle =====
+.gradle/
+build/
+!gradle/wrapper/gradle-wrapper.jar
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+# ===== Spring Boot =====
+# 환경별 설정 — 비밀값이 포함될 수 있으므로 커밋 금지
+# (application.yml은 환경 변수 플레이스홀더만 담고 있으므로 추적)
+application-local.yml
+application-local.yaml
+application-secret.yml
+application-secret.yaml
+src/main/resources/application-*.yml
+src/main/resources/application-*.yaml
+
+# ===== 환경 변수 / 비밀값 =====
+.env
+.env.local
+.env.*.local
+# .env.example 은 추적한다 (커밋 허용)
+!.env.example
+
+# JWT / API 키 등 개별 비밀 파일
+*.pem
+*.key
+*.p12
+*.jks
+*.keystore
+*.truststore
+secrets/
+secret/
+
+# ===== 로그 =====
+*.log
+logs/
+log/
+# Spring Boot rolling log
+spring.log
+
+# ===== JVM crash 덤프 =====
+hs_err_pid*.log
+replay_pid*.log
+
+# ===== Docker =====
+# compose.yaml 은 추적한다; 생성된 볼륨 디렉터리는 제외
+docker-volumes/
+
+# ===== IntelliJ IDEA =====
+.idea/
+*.iml
+*.iws
+*.ipr
+out/
+!.idea/codeStyles/
+!.idea/inspectionProfiles/
+
+# ===== VS Code =====
+.vscode/
+!.vscode/extensions.json
+
+# ===== Eclipse =====
+.classpath
+.project
+.settings/
+bin/
+
+# ===== macOS =====
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.Spotlight-V100
+.Trashes
+
+# ===== Windows =====
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# ===== 임시 파일 =====
+*.tmp
+*.swp
+*.swo
+*~

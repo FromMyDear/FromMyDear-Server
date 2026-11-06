@@ -1,0 +1,25 @@
+# 로컬 개발용 인프라. 실행: docker compose up -d
+# 값은 .env 파일에서 읽는다 (.env.example 복사 후 사용).
+services:
+  postgres:
+    image: postgres:17-alpine
+    container_name: frommydear-postgres
+    environment:
+      POSTGRES_DB: ${DB_NAME:-frommydear}
+      POSTGRES_USER: ${DB_USERNAME:-frommydear}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-frommydear}
+      TZ: UTC
+    ports:
+      - "${DB_PORT:-5432}:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USERNAME:-frommydear} -d ${DB_NAME:-frommydear}"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  # 객체 스토리지(S3 호환)는 미디어 업로드 단계에서 추가한다.
+
+volumes:
+  postgres-data:
